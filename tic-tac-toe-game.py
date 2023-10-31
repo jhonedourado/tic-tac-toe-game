@@ -1,7 +1,35 @@
-map = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-game = [["", "", ""], ["", "", ""], ["", "", ""]]
-positions = [None, (0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
-wins = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+map = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+]
+game = [
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""]
+]
+positions = [
+  None,
+  (0, 0),
+  (0, 1),
+  (0, 2),
+  (1, 0),
+  (1, 1),
+  (1, 2),
+  (2, 0),
+  (2, 1),
+  (2, 2)
+]
+wins = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  [1, 4, 7],
+  [2, 5, 8],
+  [3, 6, 9],
+  [1, 5, 9],
+  [3, 5, 7]
+]
 
 def toDesign(matrix):
   design = ""
@@ -12,58 +40,58 @@ def toDesign(matrix):
       line += f"{matrix[i][j]:^3}"
       if (j <= 1):
         line += "|"
-    design += f"{line}\n"
+    design += line + "\n"
     if (i <= 1):
-     design += f"{divider}\n"
+     design += divider + "\n"
   return design
 
 def update():
-  return f"\n> Jogo Atual:\n\n{toDesign(game)}"
+  return "\n> Jogo Atual:\n\n" + toDesign(game)
 
 def toMark(player, position):
   game[positions[position][0]][positions[position][1]] = player
   return update()
 
-print(f"> Mapa do jogo:\n\n{toDesign(map)}")   
+print("> Mapa do jogo:\n\n" + toDesign(map))   
 print(update())
 
-n = 1
-while (n <= 9):
-  if (n == 9):
+count = 1
+while (count <= 9):
+  if (count == 9):
     print("Deu velha!")
     break
-  elif (n % 2 != 0):
-    x = int(input("Marque uma posição (X): "))
-    if (x < 1 or x > 9):
+  elif (count % 2 != 0):
+    X = int(input("Marque uma posição (X): "))
+    if (X < 1 or X > 9):
       print("Essa posição não existe!")
       continue
-    elif (game[positions[x][0]][positions[x][1]] == ""):
-      print(toMark("X", x))
-      for i in wins:
-        for j in i:
-          if game[positions[j][0]][positions[j][1]] != "X":
+    elif (game[positions[X][0]][positions[X][1]] != ""):
+      print("Posição ocupada!")
+      continue
+    else:
+      print(toMark("X", X))
+      for v in wins:
+        for i in v:
+          if game[positions[i][0]][positions[i][1]] != "X":
             break
         else:
           print(f"O player 'X' ganhou!")
-          n = 9 + 1
-    else:
-      print("Posição ocupada!")
-      continue
+          count = 9 + 1
   else:
-    o = int(input("Marque uma posição (O): "))
-    if (o < 1 or o > 9):
+    O = int(input("Marque uma posição (O): "))
+    if (O < 1 or O > 9):
       print("Essa posição não existe!")
       continue
-    elif (game[positions[o][0]][positions[o][1]] == ""):
-      print(toMark("O", o))
-      for i in wins:
-        for j in i:
-          if game[positions[j][0]][positions[j][1]] != "O":
+    elif (game[positions[O][0]][positions[O][1]] != ""):
+      print("Posição ocupada!")
+      continue
+    else:
+      print(toMark("O", O))
+      for v in wins:
+        for i in v:
+          if game[positions[i][0]][positions[i][1]] != "O":
             break
         else:
           print(f"O player 'O' ganhou!")
-          n = 9 + 1
-    else:
-      print("Posição ocupada!")
-      continue
-  n += 1
+          count = 9 + 1
+  count += 1
