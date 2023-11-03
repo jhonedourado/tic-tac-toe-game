@@ -3,11 +3,13 @@ map = [
   [4, 5, 6],
   [7, 8, 9]
 ]
+
 game = [
   ["", "", ""],
   ["", "", ""],
   ["", "", ""]
 ]
+
 positions = [
   None,
   (0, 0),
@@ -20,6 +22,7 @@ positions = [
   (2, 1),
   (2, 2)
 ]
+
 wins = [
   [1, 2, 3],
   [4, 5, 6],
@@ -61,7 +64,7 @@ while (count <= 9):
     print("Deu velha!")
     break
   elif (count % 2 != 0):
-    X = int(input("Marque uma posição (X): "))
+    X = int(input("X - marque uma posição (1-9): "))
     if (X < 1 or X > 9):
       print("Essa posição não existe!")
       continue
@@ -78,7 +81,7 @@ while (count <= 9):
           print(f"O player 'X' ganhou!")
           count = 9 + 1
   else:
-    O = int(input("Marque uma posição (O): "))
+    O = int(input("O - marque uma posição (1-9): "))
     if (O < 1 or O > 9):
       print("Essa posição não existe!")
       continue
