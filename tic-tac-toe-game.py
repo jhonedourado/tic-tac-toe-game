@@ -34,7 +34,7 @@ wins = [
   [3, 5, 7]
 ]
 
-def toDesign(matrix):
+def to_design(matrix):
   design = ""
   divider = "{0}{1}{0}{1}{0}".format("---", "+")
   for i in range(3):
@@ -49,13 +49,13 @@ def toDesign(matrix):
   return design
 
 def update():
-  return "\n> Jogo Atual:\n\n" + toDesign(game)
+  return "\n> Jogo Atual:\n\n" + to_design(game)
 
-def toMark(player, position):
+def to_mark(player, position):
   game[positions[position][0]][positions[position][1]] = player
   return update()
 
-print("> Mapa do jogo:\n\n" + toDesign(map))   
+print("> Mapa do jogo:\n\n" + to_design(map))
 print(update())
 
 count = 1
@@ -72,13 +72,13 @@ while (count <= 9):
       print("Posição ocupada!")
       continue
     else:
-      print(toMark("X", X))
+      print(to_mark("X", X))
       for v in wins:
         for i in v:
           if game[positions[i][0]][positions[i][1]] != "X":
             break
         else:
-          print(f"O player 'X' ganhou!")
+          print("O player 'X' ganhou!")
           count = 9 + 1
   else:
     O = int(input("O - marque uma posição (1-9): "))
@@ -89,12 +89,12 @@ while (count <= 9):
       print("Posição ocupada!")
       continue
     else:
-      print(toMark("O", O))
+      print(to_mark("O", O))
       for v in wins:
         for i in v:
           if game[positions[i][0]][positions[i][1]] != "O":
             break
         else:
-          print(f"O player 'O' ganhou!")
+          print("O player 'O' ganhou!")
           count = 9 + 1
   count += 1
